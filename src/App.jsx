@@ -10,7 +10,7 @@ const INITIAL_DATA = {
     name: '',
     email: '',
     phone: '',
-    plan: '',
+    plan: 0,
     addon: '',
 };
 
@@ -33,7 +33,7 @@ function App() {
         isLastStep,
     } = useMultistepForm([
         <PersonalInfo {...data} updateFields={updateFields} />,
-        <SelectPlan {...data} />,
+        <SelectPlan {...data} updateFields={updateFields} />,
         <SelectAddOn {...data} />,
         <Summary {...data} />,
     ]);
@@ -55,7 +55,7 @@ function App() {
                 fontFamily: 'Arial',
             }}
         >
-            <form>
+            <form onSubmit={onSubmit}>
                 <div
                     style={{
                         position: 'absolute',
@@ -79,7 +79,7 @@ function App() {
                             Back
                         </button>
                     )}
-                    <button type='submit' onClick={onSubmit}>
+                    <button type='submit'>
                         {isLastStep ? 'Finished' : 'Next'}
                     </button>
                 </div>
