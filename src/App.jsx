@@ -11,15 +11,15 @@ const INITIAL_DATA = {
   email: "",
   phone: "",
   plan: 0,
-  addon: "",
+  addon: {},
 };
 
 function App() {
   const [data, setData] = useState(INITIAL_DATA);
 
-  function updateFields(INITIAL_DATA) {
+  function updateFields(data) {
     setData((prev) => {
-      return { ...prev, ...INITIAL_DATA };
+      return { ...prev, ...data };
     });
   }
 
@@ -27,13 +27,14 @@ function App() {
     useMultistepForm([
       <PersonalInfo {...data} updateFields={updateFields} />,
       <SelectPlan {...data} updateFields={updateFields} />,
-      <SelectAddOn {...data} />,
+      <SelectAddOn {...data} updateFields={updateFields} />,
       <Summary {...data} />,
     ]);
 
   function onSubmit(e) {
     e.preventDefault();
-    next();
+    if (!isLastStep) return next();
+    alert("Do somethiing with your data");
   }
 
   return (
@@ -46,6 +47,7 @@ function App() {
         margin: "1rem",
         borderRadius: ".5rem",
         fontFamily: "Arial",
+        maxWidth: "max-content",
       }}
     >
       <form onSubmit={onSubmit}>
