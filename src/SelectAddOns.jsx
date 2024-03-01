@@ -5,7 +5,7 @@ export function SelectAddOn({ updateFields }) {
     <FormWrapper title="Select Addon">
       <label>Add On 1</label>
       <input
-        type="text"
+        type="checkbox"
         value="1"
         onChange={(e) => updateFields({ plan: e.target.value })}
       />
