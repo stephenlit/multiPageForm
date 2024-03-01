@@ -1,18 +1,25 @@
-import { FormWrapper } from "./FormWrapper";
+import { FormWrapper } from './FormWrapper';
 
-export function SelectAddOn({ updateFields }) {
-  return (
-    <FormWrapper title="Select Addon">
-      <label>Add On 1</label>
-      <input
-        type="text"
-        value="1"
-        onChange={(e) => updateFields({ plan: e.target.value })}
-      />
-      <label>Add On 2</label>
-      <input type="text" />
-      <label>Add On 3</label>
-      <input type="text" />
-    </FormWrapper>
-  );
+export function SelectAddOn({ addon, updateFields }) {
+    return (
+        <FormWrapper title='Select Addon'>
+            <label>Add On 1</label>
+            <input
+                type='checkbox'
+                value='1'
+                onChange={(e) =>
+                    updateFields({ addon: e.target.value })
+                }
+            />
+            <label>Add On 2</label>
+            <input type='checkbox' />
+            <label>Add On 3</label>
+            <input
+                type='checkbox'
+                onChange={(e) =>
+                    updateFields({ addon: e.target.value })
+                }
+            />
+        </FormWrapper>
+    );
 }
